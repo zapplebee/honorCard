@@ -33,12 +33,20 @@
     <input
       type="password"
       ng-model="signUpCreds.password"
+      name="password"
       ng-minlength=6
       ng-maxlength=30
       required/>
 
     <label>Confirm Password:</label>
-    <input type="password" ng-model="signUpCreds.passwordConfirm" name="text" ng-match="signUpCreds.password" required/>
+    <input
+      type="password"
+      name="passwordConfirm"
+      ng-model="signUpCreds.passwordConfirm"
+      name="text"
+      ng-match="password"
+      required
+    />
 
     <label>E-Mail:</label>
     <input type="email" ng-model="signUpCreds.email" required/>
@@ -52,6 +60,8 @@
     <li ng-show="signup_form.username.$dirty && signup_form.username.$error.pattern">Usernames can only contain alpha characters</li>
     <li ng-show="signup_form.password.$dirty && signup_form.username.$error.minlength">Passwords must be at least six characters</li>
     <li ng-show="signup_form.password.$dirty && signup_form.username.$error.minlength">Passwords can be no more than 30 characters</li>
+    <li ng-show="signup_form.passwordConfirm.$error.match">Passwords do not match A</li>
+    <li ng-show="signup_form.password.$error.match">Passwords do not match B</li>
   </ul>
 </div>
 </form>
