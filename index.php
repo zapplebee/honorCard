@@ -14,18 +14,17 @@
 </head>
 <body>
 <div ng-controller="headerCtrl">
-<header ng-show="isMobile">
-<h1>Honor Card</h1>
-</header>
-<header >
-	<h1 ng-hide="isMobile">Honor Card</h1>
-	<a ng-show="isLoggedIn()" href="#/lobby" ng-class="{active:checkLocation('/lobby')}">Lobby</a>
-	<a ng-show="isLoggedIn()" href="#/board" ng-class="{active:checkLocation('/board')}">Board</a>
-	<a ng-show="isLoggedIn()" href="#/deck" ng-class="{active:checkLocation('/deck')}">Deck</a>
-	<a ng-show="isLoggedIn()" href="#/stats" ng-class="{active:checkLocation('/stats')}">Stats</a>
-	<a ng-show="isLoggedIn()" ng-click="logout()" class="tail">Log Out</a>
-	<a ng-hide="isLoggedIn() || isMobile" class="active tail">Log In</a>
-
+  <header ng-show="isMobile">
+    <h1>Honor Card</h1>
+  </header>
+  <header>
+    <h1 ng-hide="isMobile">Honor Card</h1>
+    <a ng-show="isLoggedIn()" href="#/lobby" ng-class="{active:checkLocation('/lobby')}">Lobby</a>
+    <a ng-show="isLoggedIn()" href="#/board" ng-class="{active:checkLocation('/board')}">Board</a>
+    <a ng-show="isLoggedIn()" href="#/deck" ng-class="{active:checkLocation('/deck')}">Deck</a>
+    <a ng-show="isLoggedIn()" href="#/stats" ng-class="{active:checkLocation('/stats')}">Stats</a>
+    <a ng-show="isLoggedIn()" ng-click="logout()" class="tail">Log Out</a>
+    <a ng-hide="isLoggedIn() || isMobile" class="active tail">Log In</a>  
 	</header>
 </div>
 	

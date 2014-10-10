@@ -98,20 +98,18 @@ app.run(function($rootScope, $timeout, $interval, $location, $cookies,api,$windo
 
 
   
-  $rootScope.$watch(function(){
-       return $window.innerWidth;
-    }, function(value) {
+  $rootScope.$watch(function(){return $window.innerWidth;}, function(value) {
     
-    if(value <= 440){
+      if(value <= 440){
        
-       $rootScope.isMobile = true;
+        $rootScope.isMobile = true;
        
-       }
-       else{
+      }
+      else{
        
-       $rootScope.isMobile = false;
+        $rootScope.isMobile = false;
        
-       }
+      }
    });
   
 
@@ -193,9 +191,9 @@ app.controller('statsCtrl', function(){
 app.service('api', function($rootScope,$cookieStore,$http,$cookies){
 
   this.login = function(credentials){
+
     $rootScope.isLoggingIn = true;
     delete $rootScope.loginError;
-    
     
     postLogin = function(credentials,callback){
 
@@ -222,9 +220,10 @@ app.service('api', function($rootScope,$cookieStore,$http,$cookies){
       }
       else{
         $rootScope.loginError = data.failed;
-        
       }
-    $rootScope.isLoggingIn = false; 
+      
+      $rootScope.isLoggingIn = false;
+      
     }
   
   
@@ -242,19 +241,19 @@ app.service('api', function($rootScope,$cookieStore,$http,$cookies){
   this.call = function(action,data,callback){
 
     if(angular.isDefined($cookies.apitoken)){
-    $http({
-      url:'api/action.php',
-      method:'POST',
-      data: {"token":$cookies.apitoken,"action":action,"data":data}
-    })
-    .success(function(response){
-      callback(response,true);
+      $http({
+        url:'api/action.php',
+        method:'POST',
+        data: {"token":$cookies.apitoken,"action":action,"data":data}
+      })
+      .success(function(response){
+        callback(response,true);
 
-    })
-    .error(function(data){
-      callback(response,false);
-      console.log(response);
-    });
+      })
+      .error(function(data){
+        callback(response,false);
+        console.log(response);
+      });
     
     
     }
