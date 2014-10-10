@@ -76,26 +76,25 @@ margin:auto;
 padding:6px 12px 6px 12px; 
 }
 
-.loginForm{
+.formContainer{
 background-color: #eee;
 padding: 24px;
-width:200px;
+display:inline-block;
 }
 
 
 
-.loginForm input[type="text"], .loginForm input[type="password"]{
+.formContainer input[type="text"], .formContainer input[type="password"], .formContainer input[type="email"]{
 width:196px;
 }
 
-.loginForm label,.loginForm input, .loginForm span{
+.formContainer label,.formContainer input, .formContainer span{
 display: block;
 margin-bottom: 12px;
 }
 
-.loginForm .error{
-font-size:.65em;
-color:red;
+.formContainer ul, .formContainer div{
+float:left;
 }
 
 input[type="submit"],button{
@@ -106,11 +105,5 @@ color:white;
 border:0px;
 text-transform:uppercase;
 font-weight:bold;
-}
-
-
-
-.saveBar{
-display:block;
 }
 

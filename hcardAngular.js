@@ -136,11 +136,17 @@ app.controller('headerCtrl', function($scope,$location,$rootScope,$cookies,api){
 app.controller('loginCtrl', function($scope,api){
 
 	$scope.login = function(){
-		
-    api.login($scope.creds);
-    delete $scope.creds;
+		console.log($scope.loginCreds)
+    //api.login($scope.loginCreds);
+    //delete $scope.loginCreds;
 	
 	}
+  
+	$scope.signup = function(){
+		console.log($scope.signUpCreds)
+    //api.signup($scope.signUpCreds);
+	
+	}  
   
 
 });
