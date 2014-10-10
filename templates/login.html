@@ -35,8 +35,8 @@
       type="text"
       name="username"
       ng-model="signUpCreds.username"
-      ng-pattern="/[A-Za-z]/"
-      ng-minlength=3 
+      ng-pattern="/^[a-zA-Z]*$/"
+      ng-minlength=3
       ng-maxlength=12
       required
     />
@@ -55,6 +55,8 @@
       type="password"
       name="passwordConfirm"
       ng-model="signUpCreds.passwordConfirm"
+      ng-minlength=6
+      ng-maxlength=30
       required
     />
 
@@ -75,15 +77,19 @@
     <button type="submit" ng-disabled="signup_form.$invalid" ng-class="{disabled:signup_form.$invalid}">Submit</button>
   </div>
   <ul ng-show="signup_form.$error">
-    <li ng-show="signup_form.username.$dirty && signup_form.username.$error.required">A username is required</li>
-    <li ng-show="signup_form.username.$dirty && signup_form.username.$error.minlength">Your username must be at least 3 characters</li>
-    <li ng-show="signup_form.username.$dirty && signup_form.username.$error.maxlength">Your username can be no more than 12 characters</li>
-    <li ng-show="signup_form.username.$dirty && signup_form.username.$error.pattern">Usernames can only contain alpha characters</li>
-    <li ng-show="signup_form.password.$dirty && signup_form.password.$error.minlength">Passwords must be at least six characters</li>
-    <li ng-show="signup_form.password.$dirty && signup_form.password.$error.maxlength">Passwords can be no more than 30 characters</li>
-    <li ng-show="signup_form.passwordConfirm.$dirty && signup_form.passwordConfirm.$error.isEqual">Passwords do not match</li>
-    <li ng-show="signup_form.email.$error.email">E-Mail is not valid</li>
-    <li ng-show="signup_form.emailConfirm.$dirty && signup_form.emailConfirm.$error.isEqual">E-Mails do not match</li>
+  
+    <h3 ng-show="failed" class="error">{{failed}}</h3>
+    <h3 ng-class="{error:signup_form.username.$error.required}">A username is required</h3>
+    <li ng-class="{error:signup_form.username.$dirty && signup_form.username.$error.pattern}">Usernames can only contain alpha characters</li>
+    <li ng-class="{error:signup_form.username.$dirty && signup_form.username.$error.minlength}">Usernames must be at least three characters</li>
+    <li ng-class="{error:signup_form.username.$dirty && signup_form.username.$error.maxlength}">Usernames can be no more than 30 characters</li>
+    <h3 ng-class="{error:signup_form.password.$error.required}">A password is required</h3>
+    <li ng-class="{error:signup_form.password.$dirty && signup_form.password.$error.minlength}">Passwords must be at least six characters</li>
+    <li ng-class="{error:signup_form.password.$dirty && signup_form.password.$error.maxlength}">Passwords can be no more than 30 characters</li>
+    <li ng-class="{error:signup_form.passwordConfirm.$dirty && signup_form.passwordConfirm.$error.isEqual}">Passwords confirmation must match password</li>
+    <h3 ng-class="{error:signup_form.email.$error.email || signup_form.email.$error.required}">You must provide a valid E-mail</h3>
+    <li ng-class="{error:signup_form.emailConfirm.$dirty && signup_form.emailConfirm.$error.isEqual}">E-Mails confirmation must match</li>
+    
   </ul>
 </div>
 </form>

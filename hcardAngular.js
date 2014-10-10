@@ -131,20 +131,53 @@ app.controller('headerCtrl', function($scope,$location,$rootScope,$cookies,api){
 
 });
 
-app.controller('loginCtrl', function($scope,api){
+app.controller('loginCtrl', function($scope,api,$cookies,$cookieStore){
 
 	$scope.login = function(){
 		console.log($scope.loginCreds)
-    //api.login($scope.loginCreds);
+    api.login($scope.loginCreds);
     //delete $scope.loginCreds;
 	
 	}
   
 	$scope.signup = function(){
-		console.log($scope.signUpCreds)
-    //api.signup($scope.signUpCreds);
+    api.signup($scope.signUpCreds,checkIfExists);
 	
 	}
+  
+  $scope.login = function(){
+  
+    console.log($scope.loginCreds);
+    
+    api.login($scope.loginCreds,checkIfValid);
+    
+    
+  
+  
+  }
+  
+  checkIfValid = function(response){
+  
+    console.log(response);
+    
+    if(angular.isDefined(response.failed)){
+    
+      console.log("Failed\n" + response.failed);
+      
+        $scope.loginfailed = response.failed;
+    
+    }
+    
+    if(angular.isDefined(response.token)){
+    
+      console.log("Token\n" + response.token);
+      $cookieStore.put('apitoken', response.token);
+    
+    }
+    
+    
+    
+    }
   
   $scope.$watchCollection('[signUpCreds.password, signUpCreds.passwordConfirm]',function(array){
   if(array[0] === array[1]){
@@ -163,6 +196,30 @@ app.controller('loginCtrl', function($scope,api){
     $scope.signup_form.emailConfirm.$setValidity("isEqual", false);
   }
   });
+  
+  
+  checkIfExists = function(response){
+    console.log(response);
+    if(angular.isDefined(response.failed)){
+    
+      console.log("Failed\n" + response.failed);
+      
+        $scope.failed = response.failed;
+    
+    }
+    
+    if(angular.isDefined(response.token)){
+    
+      console.log("Token\n" + response.token);
+      console.log("Token\n" + response.token);
+      $cookieStore.put('apitoken', response.token);
+    
+    }
+
+      
+      
+      
+  }
   
 
 });
@@ -190,13 +247,8 @@ app.controller('statsCtrl', function(){
 
 app.service('api', function($rootScope,$cookieStore,$http,$cookies){
 
-  this.login = function(credentials){
-
-    $rootScope.isLoggingIn = true;
-    delete $rootScope.loginError;
+  this.login = function(credentials,callback){
     
-    postLogin = function(credentials,callback){
-
       $http({
         url:'api/login.php',
         method:'POST',
@@ -207,27 +259,30 @@ app.service('api', function($rootScope,$cookieStore,$http,$cookies){
 
       })
       .error(function(data){
-        callback({failed:"Error with HTTP Service"});
+        callback(JSON.parse({failed:"Error with HTTP Service"}));
       });
 
     }
   
-    checkLogin = function(data){
-    
-      if(angular.isUndefined(data.failed)){
-        $cookieStore.put('apitoken', data);
+  this.signup = function(credentials,callback){
+  
+  
+      $http({
+        url:'api/signup.php',
+        method:'POST',
+        data: credentials
+      })
+      .success(function(data){
+        callback(data);
 
-      }
-      else{
-        $rootScope.loginError = data.failed;
-      }
+      })
+      .error(function(data){
+        callback({failed:"Error with HTTP Service"});
+      });
       
-      $rootScope.isLoggingIn = false;
       
-    }
+
   
-  
-    postLogin(credentials,checkLogin);
   
   }
 

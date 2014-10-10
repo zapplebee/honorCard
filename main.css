@@ -97,9 +97,16 @@ margin-bottom: 12px;
 float:left;
 }
 
+.formContainer h3{
+margin:8px 0px 0px -16px;
+}
+
 .formContainer li{
-color:red;
 font-size:.65em;
+}
+
+.error{
+color:red;
 }
 
 input[type="submit"],button{
