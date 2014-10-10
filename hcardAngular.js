@@ -146,7 +146,25 @@ app.controller('loginCtrl', function($scope,api){
 		console.log($scope.signUpCreds)
     //api.signup($scope.signUpCreds);
 	
-	}  
+	}
+  
+  $scope.$watchCollection('[signUpCreds.password, signUpCreds.passwordConfirm]',function(array){
+  if(array[0] === array[1]){
+    $scope.signup_form.passwordConfirm.$setValidity("isEqual", true);
+  }else
+  {
+    $scope.signup_form.passwordConfirm.$setValidity("isEqual", false);
+  }
+  });
+  
+  $scope.$watchCollection('[signUpCreds.email, signUpCreds.emailConfirm]',function(array){
+  if(array[0] === array[1]){
+    $scope.signup_form.emailConfirm.$setValidity("isEqual", true);
+  }else
+  {
+    $scope.signup_form.emailConfirm.$setValidity("isEqual", false);
+  }
+  });
   
 
 });

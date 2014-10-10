@@ -77,7 +77,7 @@ padding:6px 12px 6px 12px;
 }
 
 .formContainer{
-background-color: #eee;
+
 padding: 24px;
 display:inline-block;
 }
@@ -95,6 +95,11 @@ margin-bottom: 12px;
 
 .formContainer ul, .formContainer div{
 float:left;
+}
+
+.formContainer li{
+color:red;
+font-size:.65em;
 }
 
 input[type="submit"],button{
