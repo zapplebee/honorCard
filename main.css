@@ -1,0 +1,116 @@
+html,body{
+width: 100%;
+height: 100%;
+margin:0px;
+padding: 0px;
+font-family: sans-serif;
+}
+
+header{
+background-color:black;
+display:table;
+width:100%;
+
+}
+
+.disabled{
+opacity:0.3;
+}
+
+header a{
+background-color: #eee;
+color: black;
+text-align:center;
+height: 100%;
+display:table-cell;
+vertical-align:middle;
+width:100px;
+font-weight: bold;
+text-decoration:none;
+font-size: 18px;
+border-left: 1px solid black;
+border-top: 8px solid black;
+border-bottom: 1px solid black;
+}
+
+header a.tail{
+border-right: 12px solid black;
+}
+
+
+header a.active{
+background-color: white;
+border-bottom: 1px solid white;
+}
+
+header h1, header h2{
+padding: 8px;
+margin:0px;
+color:white;
+font-family: 'Cinzel', serif;
+display:table-cell;
+}
+
+@media (max-width: 440px){
+header h1{
+display:table-row;
+
+}
+
+header a{
+height: 64px;
+width: 19%;
+padding:4px;
+border-top: 0px;
+}
+
+header a.tail{
+border-right: 1px solid black;
+}
+}
+
+
+#container{
+max-width:856px!important;
+margin:auto;
+padding:6px 12px 6px 12px; 
+}
+
+.loginForm{
+background-color: #eee;
+padding: 24px;
+width:200px;
+}
+
+
+
+.loginForm input[type="text"], .loginForm input[type="password"]{
+width:196px;
+}
+
+.loginForm label,.loginForm input, .loginForm span{
+display: block;
+margin-bottom: 12px;
+}
+
+.loginForm .error{
+font-size:.65em;
+color:red;
+}
+
+input[type="submit"],button{
+background-color:black;
+padding: 8px;
+border-radius: 4px;
+color:white;
+border:0px;
+text-transform:uppercase;
+font-weight:bold;
+}
+
+
+
+.saveBar{
+display:block;
+}
+
