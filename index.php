@@ -24,7 +24,8 @@
     <a ng-show="isLoggedIn()" href="#/deck" ng-class="{active:checkLocation('/deck')}">Deck</a>
     <a ng-show="isLoggedIn()" href="#/stats" ng-class="{active:checkLocation('/stats')}">Stats</a>
     <a ng-show="isLoggedIn()" ng-click="logout()" class="tail">Log Out</a>
-    <a ng-hide="isLoggedIn() || isMobile" class="active tail">Log In</a>  
+    <a ng-hide="isLoggedIn() || isMobile" class="active tail">Log In</a>
+    <h2>{{authUser}}</h2>
 	</header>
 </div>
 	

@@ -131,16 +131,12 @@ app.controller('headerCtrl', function($scope,$location,$rootScope,$cookies,api){
 
 });
 
-app.controller('loginCtrl', function($scope,api,$cookies,$cookieStore){
+app.controller('loginCtrl', function($scope,api,$cookies,$cookieStore,$rootScope){
 
-	$scope.login = function(){
-		console.log($scope.loginCreds)
-    api.login($scope.loginCreds);
-    //delete $scope.loginCreds;
-	
-	}
+
   
 	$scope.signup = function(){
+  
     api.signup($scope.signUpCreds,checkIfExists);
 	
 	}
@@ -172,6 +168,8 @@ app.controller('loginCtrl', function($scope,api,$cookies,$cookieStore){
     
       console.log("Token\n" + response.token);
       $cookieStore.put('apitoken', response.token);
+      $rootScope.authUser = $scope.loginCreds.username;
+      delete $scope.loginCreds.password;
     
     }
     
@@ -199,7 +197,7 @@ app.controller('loginCtrl', function($scope,api,$cookies,$cookieStore){
   
   
   checkIfExists = function(response){
-    console.log(response);
+
     if(angular.isDefined(response.failed)){
     
       console.log("Failed\n" + response.failed);
@@ -212,6 +210,7 @@ app.controller('loginCtrl', function($scope,api,$cookies,$cookieStore){
     
       console.log("Token\n" + response.token);
       console.log("Token\n" + response.token);
+      $rootScope.authUser = $scope.signUpCreds.username;
       $cookieStore.put('apitoken', response.token);
     
     }
@@ -225,7 +224,12 @@ app.controller('loginCtrl', function($scope,api,$cookies,$cookieStore){
 });
 
 
-app.controller('lobbyCtrl', function(){
+app.controller('lobbyCtrl', function($rootScope,api,$scope){
+
+  $scope.enterGame = function(){
+  
+  
+  }
 
 });
 

@@ -51,6 +51,10 @@ font-family: 'Cinzel', serif;
 display:table-cell;
 }
 
+h1{
+font-family: 'Cinzel', serif;
+}
+
 @media (max-width: 440px){
 header h1{
 display:table-row;
